@@ -45,3 +45,28 @@ str(cats)
           #ggplot2#
 #============================#
 
+# load gapminder data
+gapminder<-read.csv("gapminder-FiveYearData.csv", stringsAsFactors = FALSE) 
+#you can also start with "data/" and it'll automatically pull up some files
+#Strings (aka columns with characters) are not going to be loaded in as factors
+summary(gapminder)
+head(gapminder)
+
+ggplot(data=gapminder,aes(x=gdpPercap, y=lifeExp))+geom_point()
+ggplot(data=gapminder, aes(x=year, y=lifeExp, by=country, color=continent))+geom_line()+geom_point()
+
+ggplot(data=gapminder, aes(x=gdpPercap, y=lifeExp, color=continent))+geom_point()
+#spread everything out
+ggplot(data=gapminder, aes(x=log(gdpPercap), y=lifeExp, color=continent))+geom_point()
+#or
+ggplot(data=gapminder, aes(x=gdpPercap, y=lifeExp, color=continent))+geom_point(alpha=0.5)+scale_x_log10() #alpha is the transparency scale and gets our points transparent
+#scale_x_log10 makes a log scale base 10 for the x axis
+ggplot(data=gapminder, aes(x=gdpPercap, y=lifeExp))+geom_point(alpha=0.5)+scale_x_log10() + geom_smooth(method="lm", size=1.5)
+#adds a line with p cool conf ints
+ggplot(data=gapminder, aes(x=gdpPercap, y=lifeExp, color=continent))+geom_point(alpha=0.5)+scale_x_log10() + geom_smooth(method="lm")
+
+#Order matters. If you plot the line first, then it'll put the line behind the points. 
+
+#Faceting out data to make things a little more clear... 
+ggplot(data=gapminder, aes(x=year, y=lifeExp, by=country, color=continent)) + geom_line()+facet_wrap(~continent)+theme_minimal()
+#So, all the different countries with all each of the lines in one graph
