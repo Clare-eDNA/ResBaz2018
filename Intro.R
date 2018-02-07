@@ -70,3 +70,12 @@ ggplot(data=gapminder, aes(x=gdpPercap, y=lifeExp, color=continent))+geom_point(
 #Faceting out data to make things a little more clear... 
 ggplot(data=gapminder, aes(x=year, y=lifeExp, by=country, color=continent)) + geom_line()+facet_wrap(~continent)+theme_minimal()
 #So, all the different countries with all each of the lines in one graph
+
+#For more data manipulation: 
+#http://www.datacarpentry.org/R-ecology-lesson/04-visualization-ggplot2.html
+
+#faceting out the data meansthat you can split out the data by whatever variable you want, for example, month or color 
+  #For example
+#  +facet_wrap(~species_id)
+#Themes may also be useful, there are tons of themes for whatever journal ect. 
+#ggplot2.tidyverse.org/reference/ggtheme.html
