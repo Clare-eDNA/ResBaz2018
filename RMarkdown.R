@@ -25,3 +25,13 @@
   #But still spits out the result
 # eval = TRUE or FALSE - shows the command but not the output
   #Really good for isolating problems
+
+#The top code chunk is the default set for all code chunks
+#Make sure it's in the brackets correctly
+#Everytime you hit the knit button, it'll save your document
+
+#Help > cheatsheets > rmarkdown cheat sheets
+#Help > markdown quick ref
+
+#Making lists / nested lists
+#make sure you have two tabs
