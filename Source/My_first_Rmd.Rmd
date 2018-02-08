@@ -7,6 +7,9 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(knitr) #Load your dependicies and libraries here
+library(kableExtra)
+library(dplyr)
 ```
 
 ## R Markdown
@@ -49,3 +52,38 @@ plot(pressure)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+##__Table 1__
+
+col 1 | col 2 | col 3
+--- | --- | ---
+row1 | 1 | 2
+row 2 | 3 | *4*
+
+```{r}
+head(cars)
+```
+
+##Stuff including kableTable
+
+```{r Heading/kableTable}
+
+data.frame(col1=rnorm(20), col2=rnorm(20)) %>%
+  mutate(col1=sprintf('%.3f',col1)) %>% #sprint f will return a character, the % means substitue in the first argument coming in (col1), the dot indicates the decimal, then we want three figures after the decimal, the f indicates the object coming in is a decimal number. So this function will take everything to three zeros, then pipe it through the end of the table with %>%
+  #Make sure to do this as the last thing before it hits the formatting table
+  kable(., 
+        digits=2, 
+        col.names=c("Column 1",  "Column 2"),
+        align = "lr",
+        caption = "My caption", 
+        format="html") %>% 
+  group_rows("first5",1,5) %>%
+  group_rows('second5',6,10)%>%
+  add_header_above(c("Group 1" = 2)) 
+
+#=1 is how wide it's going to be, check online on how to do kable tables
+
+```
+
+
+$$ 4/5 \beta$$
